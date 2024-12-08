@@ -18,17 +18,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to Coffee Shop Payment Processing API');
 });
 
-// Define a schema for the Order collection
-// const OrderSchema = new mongoose.Schema({
-//   // OrderId: { type: String, required: false, unique: true },
-//   Items: { type: [String], required: true },
-//   CustomerName: { type: String, required: true },
-//   Price: { type: Number, required: true },
-//   OrderStatus: { type: String, required: true },
-//   PaymentStatus: { type: String, required: true },
-//   OrderedDate: { type: Date, default: Date.now },
-//   UpdatedAt: { type: Date, default: Date.now },
-// });
 
 const OrderSchema = new mongoose.Schema({
   Items: { type: [String], required: true },
@@ -40,16 +29,6 @@ const OrderSchema = new mongoose.Schema({
   UpdatedAt: { type: Date, default: Date.now },
 });
 
-
-// OrderSchema.pre('save', async function (next) {
-//   if (!this.OrderId) {
-//     // You can customize this logic to generate a unique OrderId
-//     const timestamp = Date.now();  // Use the current timestamp
-//     const randomString = Math.random().toString(36).substring(2, 8); // Generate a random string
-//     this.OrderId = `ORD-${timestamp}-${randomString}`;  // Combine timestamp and random string
-//   }
-//   next();
-// });
 
 const Order = mongoose.model('Order', OrderSchema);
 module.exports = Order;
@@ -120,17 +99,6 @@ app.get("/orders", async (req, res) => {
   }
 });
 
-// POST route to add a new order
-// app.post('/orders', async (req, res) => {
-//   try {
-//     const newOrder = new Order(req.body);
-//     await newOrder.save();
-//     res.status(201).send({ message: 'Order added successfully', order: newOrder });
-//   } catch (error) {
-//     console.error('Error adding order:', error);
-//     res.status(400).send({ message: 'Error adding order', error: error.message });
-//   }
-// });  
 
 app.post('/orders', async (req, res) => {
   try {
